@@ -1,6 +1,9 @@
 phg - Password hasher and generator
 ===================================
 
+.. image:: https://travis-ci.org/hvnsweeting/phg.svg?branch=master
+    :target: https://travis-ci.org/hvnsweeting/phg
+
 Installation
 ------------
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import subprocess as spr
 from phg import random_password, DEFAULT_LENGTH

@@ -10,9 +10,9 @@ def handle_command(cmd, passwd, stdin):
         out, err = p.communicate(input=passwd)
         if err:
             raise spr.CalledProcessError(err)
-        print out.strip()
+        print(out.strip())
     else:
-        print spr.check_output(cmd + [passwd])
+        print(spr.check_output(cmd + [passwd]))
 
 
 def main():
@@ -31,18 +31,18 @@ def main():
         import shlex
         cmd = shlex.split(args.command)
     elif args.stdin:
-        print '--stdin must be used with --command'
+        print('--stdin must be used with --command')
         return
 
     if not args.users:
         passwd = random_password(args.length, args.quote)
-        print passwd
+        print(passwd)
         if args.command:
             handle_command(cmd, passwd, args.stdin)
 
     for username in args.users:
         passwd = random_password(args.length, args.quote)
-        print '{0}: {1}'.format(username, passwd)
+        print('{0}: {1}'.format(username, passwd))
 
         if args.command:
             handle_command(cmd, passwd, args.stdin)

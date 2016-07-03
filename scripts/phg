@@ -1,0 +1,51 @@
+import argparse
+import subprocess as spr
+from phg import random_password, DEFAULT_LENGTH
+
+
+def handle_command(cmd, passwd, stdin):
+    if stdin:
+        p = spr.Popen(cmd, stdin=spr.PIPE, stdout=spr.PIPE)
+        out, err = p.communicate(input=passwd)
+        if err:
+            raise spr.CalledProcessError(err)
+        print out.strip()
+    else:
+        print spr.check_output(cmd + [passwd])
+
+
+def main():
+    argp = argparse.ArgumentParser()
+    argp.add_argument('users', nargs='*')
+    argp.add_argument('-c', '--command')
+    argp.add_argument('-q', '--quote', action='store_true', default=False,
+                      help='allow quote \' or " in password')
+    argp.add_argument('-i', '--stdin', action='store_true',
+                      help='pass generated password to command' 'as stdin')
+    argp.add_argument('-l', '--length', default=DEFAULT_LENGTH, type=int,
+                      help='length of password')
+    args = argp.parse_args()
+
+    if args.command:
+        import shlex
+        cmd = shlex.split(args.command)
+    elif args.stdin:
+        print '--stdin must be used with --command'
+        return
+
+    if not args.users:
+        passwd = random_password(args.length, args.quote)
+        print passwd
+        if args.command:
+            handle_command(cmd, passwd, args.stdin)
+
+    for username in args.users:
+        passwd = random_password(args.length, args.quote)
+        print '{0}: {1}'.format(username, passwd)
+
+        if args.command:
+            handle_command(cmd, passwd, args.stdin)
+
+
+if __name__ == "__main__":
+    main()

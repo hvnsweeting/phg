@@ -61,4 +61,4 @@ this mainly targets command that does not support reading from STDIN::
 Authors
 -------
 
-Viet Hung Nguyen <hvn@fml.vn>
+Viet Hung Nguyen <hvn@familug.org>

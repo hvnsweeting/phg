@@ -19,6 +19,10 @@ def main():
     argp = argparse.ArgumentParser()
     argp.add_argument('users', nargs='*')
     argp.add_argument('-c', '--command')
+    argp.add_argument('-m', '--markdown',
+                      action='store_true',
+                      help='wrap password in markdown format')
+    argp.add_argument('-s', '--site', help='site to prefix before output')
     argp.add_argument('-q', '--quote', action='store_true', default=False,
                       help='allow quote \' or " in password')
     argp.add_argument('-i', '--stdin', action='store_true',
@@ -42,7 +46,14 @@ def main():
 
     for username in args.users:
         passwd = random_password(args.length, args.quote)
-        print('{0}: {1}'.format(username, passwd))
+
+        fmt_passwd = '``{0}``'.format(passwd) if args.markdown else passwd
+        if args.site:
+            print('Address {0} User: {1} Passwd: {2}'.format(
+                args.site, username, fmt_passwd)
+            )
+        else:
+            print('{0} {1}'.format(username, fmt_passwd))
 
         if args.command:
             handle_command(cmd, passwd, args.stdin)

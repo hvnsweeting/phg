@@ -64,7 +64,7 @@ over Markdown powered chat app such as Slack, Mattermost::
   $ phg -m -s https://grafana.pymi.vn hvn nvh pikachu pukachi
   Address https://grafana.pymi.vn User: hvn Passwd: ``$8pZTMWX~NU5Z-2e``
   Address https://grafana.pymi.vn User: nvh Passwd: ``S%]JWO-_bS]:w7QI``
-  Address https://grafana.pymi.vn User: pikachu Passwd: ``7^_c+e<|_%`RLMf1``
+  Address https://grafana.pymi.vn User: pikachu Passwd: ``7^_c+e<|_%`RLMf2``
   Address https://grafana.pymi.vn User: pukachi Passwd: ``E@EC5XcQPoN$+>57``
 
 Authors

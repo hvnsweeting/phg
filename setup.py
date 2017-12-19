@@ -10,7 +10,7 @@ requisites = []
 
 setup(
     name='phg',
-    version='1.1.0',
+    version='2.0.0',
     description='Password hasher and generator',
     scripts=['scripts/phg'],
     long_description=open('README.rst').read(),

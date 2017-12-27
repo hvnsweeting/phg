@@ -1,6 +1,7 @@
 import random
 import string
-
+# https://docs.python.org/3/library/random.html#random.SystemRandom
+choice = random.SystemRandom().choice
 
 DEFAULT_LENGTH = 16
 
@@ -25,12 +26,12 @@ def random_password(length=DEFAULT_LENGTH, with_quote=False, symbol=True):
         punc = punc.replace('"', '').replace("'", "")
 
     result = []
-    result.append(random.choice(string.ascii_lowercase))
-    result.append(random.choice(string.ascii_uppercase))
-    result.append(random.choice(string.digits))
-    result.append(random.choice(punc))
+    result.append(choice(string.ascii_lowercase))
+    result.append(choice(string.ascii_uppercase))
+    result.append(choice(string.digits))
+    result.append(choice(punc))
     for i in range(length - len(result)):
-        result.append(random.choice(
+        result.append(choice(
             string.ascii_letters +
             string.digits + punc))
     random.shuffle(result)
